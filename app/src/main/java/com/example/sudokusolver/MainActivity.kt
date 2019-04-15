@@ -7,13 +7,29 @@ import android.view.Menu
 import android.view.MenuItem
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    var adapter: SudokuViewAdapter? = null
+    var numbersList = ArrayList<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        // load foods
+        numbersList.add(0)
+        numbersList.add(1)
+        numbersList.add(2)
+        numbersList.add(3)
+        numbersList.add(4)
+        numbersList.add(5)
+        adapter = SudokuViewAdapter(this, numbersList)
+
+        SudokuView.adapter = adapter
+
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
