@@ -26,7 +26,7 @@ class SudokuViewAdapter(var context: Context, var numberList: ArrayList<Int>) : 
         val number = this.numberList[position]
         val inflator = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val numberView = inflator.inflate(R.layout.sudoku_item, null)
-        numberView.sudoku_number.text = number.toString()
+        numberView.sudoku_number.setText(number.toString())
         return numberView
     }
 }
