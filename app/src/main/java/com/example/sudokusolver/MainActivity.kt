@@ -20,12 +20,9 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         // load foods
-        numbersList.add(0)
-        numbersList.add(1)
-        numbersList.add(2)
-        numbersList.add(3)
-        numbersList.add(4)
-        numbersList.add(5)
+        for (i in 1..81){
+            numbersList.add(i)
+        }
         adapter = SudokuViewAdapter(this, numbersList)
 
         SudokuView.adapter = adapter
