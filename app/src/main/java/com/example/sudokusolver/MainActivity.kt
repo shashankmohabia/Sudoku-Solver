@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         // load foods
         for (i in 1..81) {
-            numbersList.add(i.toString())
+            numbersList.add("-")
         }
         adapter = SudokuViewAdapter(this, numbersList)
         SudokuView.adapter = adapter
@@ -42,7 +42,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun solveSudoku(numbersList: ArrayList<String>){
-        numbersList[4] = 45.toString()
+        for(i in 0..80){
+            if(numbersList[i]=="-")numbersList[i]= (i+1).toString()
+        }
         adapter!!.notifyDataSetChanged()
     }
 
