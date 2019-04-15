@@ -20,10 +20,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        // load foods
-        for (i in 1..81) {
-            numbersList.add("-")
-        }
+        initializeNumberList()
+
         adapter = SudokuViewAdapter(this, numbersList)
         SudokuView.adapter = adapter
 
@@ -39,6 +37,14 @@ class MainActivity : AppCompatActivity() {
             Log.d("Satya", numbersList.toString())
         }
 
+    }
+
+    private fun initializeNumberList() {
+        numbersList.clear()
+        for (i in 1..81) {
+            numbersList.add("-")
+        }
+        Log.d("Satya", numbersList.toString())
     }
 
     private fun solveSudoku(numbersList: ArrayList<String>){
@@ -59,7 +65,11 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_reset -> {
+                initializeNumberList()
+                adapter!!.notifyDataSetChanged()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
