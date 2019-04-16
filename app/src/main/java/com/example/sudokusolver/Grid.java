@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class Grid {
     private File file;
-    private int[][] m_board;
+    int[][] m_board;
 
 
     public Grid() {

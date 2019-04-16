@@ -42,27 +42,53 @@ class MainActivity : AppCompatActivity() {
     private fun initializeNumberList() {
         numbersList.clear()
         for (i in 1..81) {
-            numbersList.add(69.toString())
+            numbersList.add("-")
         }
         Log.d("Satya", numbersList.toString())
     }
 
-    private fun solveSudoku(numbersList: ArrayList<String>){
-        var numberArray = toTwoDArray(numbersList)
-        SudokuSolver().runAC()
+    private fun solveSudoku(numbersList: ArrayList<String>) {
+        //var numberArray = toTwoDArray(numbersList)
+        var solver = SudokuSolver()
+        val grid = Grid()
+        updateInputGrid(grid)
+        Log.d("Bhavsar", grid.m_board[2][2].toString())
+        solver.runAC(grid)
+        solver.runBC(grid)
+        Log.d("Bhavsar", grid.m_board[2][2].toString())
+        updateResult(grid)
+    }
+
+    private fun updateInputGrid(grid: Grid) {
+        for (i in 0..8) {
+            for (j in 0..8) {
+                if (numbersList[(9 * i + j)] != "-")
+                    grid.m_board[i][j] = numbersList[(9 * i + j)].toInt()
+            }
+        }
+        Log.d("Bhavsar", grid.m_board[2][2].toString())
+    }
+
+    private fun updateResult(board: Grid) {
+        for (i in 0..8) {
+            for (j in 0..8) {
+                numbersList[(9 * i + j)] = (board.m_board!![i][j]).toString()
+            }
+        }
+        Log.d("Bhavsar", numbersList.toString())
         adapter!!.notifyDataSetChanged()
     }
 
-    private fun toTwoDArray(numbersList: ArrayList<String>): Any {
-        val array = Array(9) {IntArray(9)}
-        for(i in 0..8){
-            for(j in 0..8){
-                array[i][j] = numbersList[(9*i+j)].toInt()
+    /*private fun toTwoDArray(numbersList: ArrayList<String>): Any {
+        val array = Array(9) { IntArray(9) }
+        for (i in 0..8) {
+            for (j in 0..8) {
+                array[i][j] = numbersList[(9 * i + j)].toInt()
             }
         }
         Log.d("Bhavsar", array[6][7].toString())
         return array
-    }
+    }*/
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
