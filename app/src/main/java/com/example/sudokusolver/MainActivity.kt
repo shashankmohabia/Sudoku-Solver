@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -48,13 +49,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun solveSudoku(numbersList: ArrayList<String>) {
-        var solver = SudokuSolver()
+        val solver = SudokuSolver()
         val grid = Grid()
         updateInputGrid(grid)
-        Log.d("Bhavsar", grid.m_board[2][2].toString())
+        //Log.d("Bhavsar", grid.m_board[2][2].toString())
         solver.runAC(grid)
         solver.runBC(grid)
-        Log.d("Bhavsar", grid.m_board[2][2].toString())
+
+        //Log.d("Bhavsar", grid.m_board[2][2].toString())
         updateResult(grid)
     }
 
@@ -65,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                     grid.m_board[i][j] = numbersList[(9 * i + j)].toInt()
             }
         }
-        Log.d("Bhavsar", grid.m_board[2][2].toString())
+        //Log.d("Bhavsar", grid.m_board[2][2].toString())
     }
 
     private fun updateResult(board: Grid) {
@@ -74,20 +76,9 @@ class MainActivity : AppCompatActivity() {
                 numbersList[(9 * i + j)] = (board.m_board!![i][j]).toString()
             }
         }
-        Log.d("Bhavsar", numbersList.toString())
+        //Log.d("Bhavsar", numbersList.toString())
         adapter!!.notifyDataSetChanged()
     }
-
-    /*private fun toTwoDArray(numbersList: ArrayList<String>): Any {
-        val array = Array(9) { IntArray(9) }
-        for (i in 0..8) {
-            for (j in 0..8) {
-                array[i][j] = numbersList[(9 * i + j)].toInt()
-            }
-        }
-        Log.d("Bhavsar", array[6][7].toString())
-        return array
-    }*/
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
