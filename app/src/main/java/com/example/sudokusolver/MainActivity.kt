@@ -42,16 +42,26 @@ class MainActivity : AppCompatActivity() {
     private fun initializeNumberList() {
         numbersList.clear()
         for (i in 1..81) {
-            numbersList.add("-")
+            numbersList.add(69.toString())
         }
         Log.d("Satya", numbersList.toString())
     }
 
     private fun solveSudoku(numbersList: ArrayList<String>){
-        for(i in 0..80){
-            if(numbersList[i]=="-")numbersList[i]= (i+1).toString()
-        }
+        var numberArray = toTwoDArray(numbersList)
+        SudokuSolver().runAC()
         adapter!!.notifyDataSetChanged()
+    }
+
+    private fun toTwoDArray(numbersList: ArrayList<String>): Any {
+        val array = Array(9) {IntArray(9)}
+        for(i in 0..8){
+            for(j in 0..8){
+                array[i][j] = numbersList[(9*i+j)].toInt()
+            }
+        }
+        Log.d("Bhavsar", array[6][7].toString())
+        return array
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
