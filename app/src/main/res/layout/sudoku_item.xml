@@ -9,8 +9,8 @@
             android:textColor="#000000"
             android:background="#FFFFFF"
             android:gravity="center"
+            android:maxLength="1"
+            android:inputType="number"
             android:layout_width="40dp"
             android:layout_height="40dp"/>
-    //android:hint="0"
-    //android:inputType="number"
 </FrameLayout>

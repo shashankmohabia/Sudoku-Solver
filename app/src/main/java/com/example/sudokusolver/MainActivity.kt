@@ -48,7 +48,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun solveSudoku(numbersList: ArrayList<String>) {
-        //var numberArray = toTwoDArray(numbersList)
         var solver = SudokuSolver()
         val grid = Grid()
         updateInputGrid(grid)
