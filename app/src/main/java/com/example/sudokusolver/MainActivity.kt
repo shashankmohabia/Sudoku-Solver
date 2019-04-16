@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initializeNumberList() {
         numbersList.clear()
-        for (i in 1..81) {
+        for (i in 0..80) {
             numbersList.add(0)
         }
         Log.d("Satya", numbersList.toString())
