@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import kotlinx.android.synthetic.main.sudoku_item.view.*
 
-class SudokuViewAdapter(private var context: Context, var numberList: ArrayList<String>) : BaseAdapter() {
+class SudokuViewAdapter(private var context: Context, var numberList: ArrayList<Int>) : BaseAdapter() {
 
     override fun getCount(): Int {
         return numberList.size
@@ -25,7 +25,7 @@ class SudokuViewAdapter(private var context: Context, var numberList: ArrayList<
         val number = this.numberList[position]
         val inflator = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val numberView = inflator.inflate(R.layout.sudoku_item, null)
-        numberView.sudoku_number.setText(number)
+        numberView.sudoku_number.setText(number.toString())
         return numberView
     }
 }

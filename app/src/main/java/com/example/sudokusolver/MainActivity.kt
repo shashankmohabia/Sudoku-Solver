@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.sudoku_item.view.*
 class MainActivity : AppCompatActivity() {
 
     var adapter: SudokuViewAdapter? = null
-    var numbersList = ArrayList<String>()
+    var numbersList = ArrayList<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             for (i in 0..80) {
                 val item = SudokuView.getChildAt(i).sudoku_number
-                numbersList[i] = item.text.toString()
+                numbersList[i] = item.text.toString().toInt()
                 //adapter!!.notifyDataSetChanged()
             }
             Log.d("Satya", numbersList.toString())
@@ -43,19 +43,19 @@ class MainActivity : AppCompatActivity() {
     private fun initializeNumberList() {
         numbersList.clear()
         for (i in 1..81) {
-            numbersList.add("-")
+            numbersList.add(0)
         }
         Log.d("Satya", numbersList.toString())
     }
 
-    private fun solveSudoku(numbersList: ArrayList<String>) {
+    private fun solveSudoku(numbersList: ArrayList<Int>) {
         val solver = SudokuSolver()
         val grid = Grid()
         updateInputGrid(grid)
         //Log.d("Bhavsar", grid.m_board[2][2].toString())
         solver.runAC(grid)
         solver.runBC(grid)
-        Toast.makeText(this, grid.checkBoard().toString(),Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, grid.checkBoard().toString(), Toast.LENGTH_SHORT).show()
         //Log.d("Bhavsar", grid.m_board[2][2].toString())
         updateResult(grid)
     }
@@ -63,8 +63,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateInputGrid(grid: Grid) {
         for (i in 0..8) {
             for (j in 0..8) {
-                if (numbersList[(9 * i + j)] != "-")
-                    grid.m_board[i][j] = numbersList[(9 * i + j)].toInt()
+                grid.m_board[i][j] = numbersList[(9 * i + j)].toInt()
             }
         }
         //Log.d("Bhavsar", grid.m_board[2][2].toString())
@@ -73,7 +72,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateResult(board: Grid) {
         for (i in 0..8) {
             for (j in 0..8) {
-                numbersList[(9 * i + j)] = (board.m_board!![i][j]).toString()
+                numbersList[(9 * i + j)] = (board.m_board!![i][j])
             }
         }
         //Log.d("Bhavsar", numbersList.toString())
