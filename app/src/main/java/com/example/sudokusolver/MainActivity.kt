@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         //Log.d("Bhavsar", grid.m_board[2][2].toString())
         solver.runAC(grid)
         solver.runBC(grid)
-
+        Toast.makeText(this, grid.checkBoard().toString(),Toast.LENGTH_SHORT).show()
         //Log.d("Bhavsar", grid.m_board[2][2].toString())
         updateResult(grid)
     }
